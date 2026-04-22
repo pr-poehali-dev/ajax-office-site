@@ -25,18 +25,20 @@
     --ring: 207 70% 35%;
     --radius: 0.5rem;
 
-    --sea-deep: #1a5e8a;
-    --sea: #2980b9;
-    --sea-light: #5dade2;
-    --sea-pale: #ebf5fb;
-    --sky: #aed6f1;
-    --gold: #d4a017;
-    --gold-light: #f0c040;
-    --sand: #f5ecd7;
-    --sand-light: #fdf8f0;
-    --text-dark: #1c2b3a;
-    --text-mid: #4a6880;
-    --text-light: #8aafc0;
+    --sea-deep: #0d2b45;
+    --sea-mid: #14426b;
+    --sea: #1b6ca8;
+    --sea-light: #4a9fd4;
+    --sea-pale: #e8f4fb;
+    --sky: #c2e0f4;
+    --gold: #c9952a;
+    --gold-light: #f0bc45;
+    --gold-pale: #fdf3dc;
+    --sand: #f7f0e6;
+    --sand-light: #fdfaf5;
+    --text-dark: #0d2b45;
+    --text-mid: #3a607e;
+    --text-light: #7aaabf;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -149,26 +151,25 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--sea);
+  background: linear-gradient(135deg, var(--sea) 0%, var(--sea-mid) 100%);
   color: #fff;
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  padding: 13px 28px;
-  border-radius: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 2px;
   border: none;
   cursor: pointer;
   white-space: nowrap;
-  transition:
-    background 0.25s,
-    transform 0.2s,
-    box-shadow 0.25s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px rgba(13, 43, 69, 0.28);
 }
 .btn-sea:hover {
-  background: var(--sea-deep);
+  background: linear-gradient(135deg, var(--sea-light) 0%, var(--sea) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(26, 94, 138, 0.35);
+  box-shadow: 0 10px 30px rgba(13, 43, 69, 0.42);
 }
 
 .btn-outline-sea {
@@ -179,45 +180,46 @@
   color: var(--sea);
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  padding: 11px 26px;
-  border-radius: 4px;
-  border: 2px solid var(--sea);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  border-radius: 2px;
+  border: 1.5px solid var(--sea);
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.25s;
+  transition: all 0.3s ease;
 }
 .btn-outline-sea:hover {
   background: var(--sea);
   color: #fff;
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(13, 43, 69, 0.28);
 }
 
 .btn-gold {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--gold);
-  color: var(--text-dark);
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+  color: var(--sea-deep);
   font-family: "Inter", sans-serif;
   font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  padding: 13px 28px;
-  border-radius: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 2px;
   border: none;
   cursor: pointer;
   white-space: nowrap;
-  transition:
-    background 0.25s,
-    transform 0.2s,
-    box-shadow 0.25s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px rgba(201, 149, 42, 0.35);
 }
 .btn-gold:hover {
-  background: var(--gold-light);
+  background: linear-gradient(135deg, var(--gold) 0%, #a87a10 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(212, 160, 23, 0.4);
+  box-shadow: 0 10px 30px rgba(201, 149, 42, 0.52);
 }
 
 .card-hover {
@@ -233,21 +235,32 @@
 .section-label {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.7rem;
+  gap: 12px;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--sea);
-  margin-bottom: 12px;
+  color: var(--gold);
+  margin-bottom: 14px;
 }
 .section-label::before {
   content: "";
   display: inline-block;
-  width: 28px;
+  width: 32px;
   height: 2px;
-  background: var(--gold);
+  background: linear-gradient(90deg, var(--gold-light), var(--gold));
   border-radius: 1px;
+  flex-shrink: 0;
+}
+
+/* Premium dark section */
+.section-dark {
+  background: linear-gradient(160deg, var(--sea-deep) 0%, var(--sea-mid) 100%);
+}
+
+/* Gold accent border */
+.gold-accent-top {
+  border-top: 2px solid var(--gold);
 }
 
 [data-tip] {

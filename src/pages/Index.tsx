@@ -109,61 +109,69 @@ export default function Index() {
     <div style={{ background: "#fff", fontFamily: "'Inter', sans-serif", color: "var(--text-dark)" }}>
 
       {/* ── NAVBAR ── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
-          background: scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.88)",
-          backdropFilter: "blur(14px)",
-          boxShadow: scrolled ? "0 2px 20px rgba(26,94,138,.12)" : "none",
-          borderBottom: "1px solid rgba(93,173,226,.2)",
+          background: scrolled
+            ? "rgba(13,43,69,0.97)"
+            : "rgba(13,43,69,0.75)",
+          backdropFilter: "blur(20px)",
+          boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,.35)" : "none",
+          borderBottom: "1px solid rgba(201,149,42,.25)",
         }}>
-        <div className="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
-          <a href="#home"><img src={LOGO_URL} alt="АЯКС НА БЕРЕГУ" className="h-10 w-auto" /></a>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between" style={{ height: 76 }}>
+          <a href="#home" className="flex items-center flex-shrink-0">
+            <img src={LOGO_URL} alt="АЯКС НА БЕРЕГУ" style={{ height: 62, width: "auto" }} />
+          </a>
 
-          <div className="hidden xl:flex items-center gap-6">
+          <div className="hidden xl:flex items-center gap-7">
             {NAV.map(n => (
-              <a key={n.href} href={n.href} className="nav-link text-xs font-medium"
-                style={{ color: "var(--text-dark)", letterSpacing: "0.03em" }}>
+              <a key={n.href} href={n.href}
+                className="nav-link text-xs font-semibold tracking-widest uppercase"
+                style={{ color: "rgba(255,255,255,.82)", letterSpacing: "0.12em" }}>
                 {n.label}
               </a>
             ))}
           </div>
 
-          <div className="hidden xl:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-4">
             <a href="tel:+79061876057" data-tip="Позвонить"
-              className="flex items-center gap-2 font-semibold text-sm transition-colors hover:text-[var(--sea)]"
-              style={{ color: "var(--sea-deep)" }}>
-              <Icon name="Phone" size={15} />8 906 187 60 57
+              className="flex items-center gap-2 font-semibold text-sm transition-all hover:opacity-80"
+              style={{ color: "var(--gold-light)" }}>
+              <Icon name="Phone" size={14} />8 906 187 60 57
             </a>
-            <button className="btn-sea ml-1" onClick={() => scrollTo("contacts")}>Связаться с нами</button>
+            <button className="btn-gold" onClick={() => scrollTo("contacts")}>Связаться</button>
           </div>
 
           <button className="xl:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}>
-            <Icon name={menuOpen ? "X" : "Menu"} size={22} style={{ color: "var(--sea-deep)" }} />
+            <Icon name={menuOpen ? "X" : "Menu"} size={22} style={{ color: "rgba(255,255,255,.9)" }} />
           </button>
         </div>
 
         {menuOpen && (
-          <div className="xl:hidden px-5 pb-5 pt-1" style={{ background: "#fff", borderTop: "1px solid var(--sea-pale)" }}>
+          <div className="xl:hidden px-6 pb-6 pt-2"
+            style={{ background: "rgba(13,43,69,.98)", borderTop: "1px solid rgba(201,149,42,.2)" }}>
             {NAV.map(n => (
               <a key={n.href} href={n.href} onClick={() => setMenuOpen(false)}
-                className="block py-2.5 text-sm font-medium border-b"
-                style={{ color: "var(--text-dark)", borderColor: "var(--sea-pale)" }}>
+                className="block py-3 text-sm font-semibold tracking-widest uppercase border-b"
+                style={{ color: "rgba(255,255,255,.8)", borderColor: "rgba(201,149,42,.15)" }}>
                 {n.label}
               </a>
             ))}
-            <a href="tel:+79061876057" className="flex items-center gap-2 mt-4 font-semibold" style={{ color: "var(--sea)" }}>
+            <a href="tel:+79061876057" className="flex items-center gap-2 mt-5 font-semibold" style={{ color: "var(--gold-light)" }}>
               <Icon name="Phone" size={14} />8 906 187 60 57
             </a>
-            <button className="btn-sea w-full mt-3">Связаться с нами</button>
+            <button className="btn-gold w-full mt-3 justify-center">Связаться с нами</button>
           </div>
         )}
       </nav>
 
       {/* ── HERO ── */}
-      <section id="home" className="relative" style={{ minHeight: "100vh", paddingTop: 64 }}>
+      <section id="home" className="relative" style={{ minHeight: "100vh", paddingTop: 76 }}>
         <div className="absolute inset-0">
           <img src={IMG_HERO} alt="Набережная Анапы" className="w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(26,94,138,.82)0%,rgba(26,94,138,.4)55%,rgba(0,0,0,.15)100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(150deg, rgba(13,43,69,.92) 0%, rgba(13,43,69,.65) 50%, rgba(13,43,69,.3) 100%)" }} />
+          {/* Gold shimmer overlay */}
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 60%, rgba(13,43,69,.7) 100%)" }} />
         </div>
         <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: 80 }}>
@@ -173,11 +181,14 @@ export default function Index() {
         <div className="relative z-10 flex items-center" style={{ minHeight: "calc(100vh - 64px)" }}>
           <div className="max-w-7xl mx-auto px-5 pb-20 w-full">
             <div className="max-w-2xl">
-              <div className="section-label anim-up" style={{ color: "rgba(255,255,255,.85)" }}>
-                Агентство недвижимости Анапы · 27 лет на рынке
+              <div className="anim-up flex items-center gap-3 mb-5">
+                <div style={{ width: 40, height: 2, background: "var(--gold)", borderRadius: 1 }} />
+                <span style={{ color: "var(--gold-light)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase" }}>
+                  Агентство недвижимости Анапы · 27 лет на рынке
+                </span>
               </div>
-              <h1 className="anim-up-1 mb-5 font-semibold leading-tight"
-                style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(2.4rem,5.5vw,4.2rem)", color: "#fff" }}>
+              <h1 className="anim-up-1 mb-6 font-semibold leading-tight"
+                style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(2.6rem,6vw,4.8rem)", color: "#fff", lineHeight: 1.1 }}>
                 Ваша недвижимость<br />
                 <em style={{ color: "var(--gold-light)", fontStyle: "italic" }}>у Черного моря</em>
               </h1>
@@ -212,17 +223,18 @@ export default function Index() {
       </section>
 
       {/* ── SERVICES STRIP ── */}
-      <section style={{ background: "var(--sea-pale)", borderBottom: "1px solid rgba(93,173,226,.2)" }} className="py-12">
+      <section style={{ background: "var(--sea-deep)", borderBottom: "1px solid rgba(201,149,42,.2)" }} className="py-12">
         <div className="max-w-7xl mx-auto px-5">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {SERVICES.map(s => (
               <a href="#services" key={s.title}
                 className="card-hover flex flex-col items-center text-center gap-2 p-5 rounded-xl cursor-pointer"
-                style={{ background: "#fff", border: "1px solid rgba(93,173,226,.2)" }}>
-                <div className="w-11 h-11 rounded-full flex items-center justify-center" style={{ background: "var(--sea-pale)" }}>
-                  <Icon name={s.icon} size={20} style={{ color: "var(--sea)" }} />
+                style={{ background: "rgba(255,255,255,.06)", border: "1px solid rgba(201,149,42,.25)" }}>
+                <div className="w-11 h-11 rounded-full flex items-center justify-center"
+                  style={{ background: "rgba(201,149,42,.15)", border: "1px solid rgba(201,149,42,.3)" }}>
+                  <Icon name={s.icon} size={20} style={{ color: "var(--gold-light)" }} />
                 </div>
-                <span className="text-xs font-semibold leading-snug" style={{ color: "var(--text-dark)" }}>{s.title}</span>
+                <span className="text-xs font-semibold leading-snug" style={{ color: "rgba(255,255,255,.85)" }}>{s.title}</span>
               </a>
             ))}
           </div>
@@ -230,7 +242,7 @@ export default function Index() {
       </section>
 
       {/* ── ABOUT ── */}
-      <section id="about" className="py-24" style={{ background: "#fff" }}>
+      <section id="about" className="py-24" style={{ background: "var(--sand-light)" }}>
         <div className="max-w-7xl mx-auto px-5">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -289,15 +301,15 @@ export default function Index() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {TEAM.map(t => (
                 <div key={t.name} className="card-hover text-center p-6 rounded-xl"
-                  style={{ border: "1px solid rgba(93,173,226,.2)", background: "var(--sea-pale)" }}>
+                  style={{ border: "1px solid rgba(201,149,42,.25)", background: "#fff", boxShadow: "0 2px 16px rgba(13,43,69,.07)" }}>
                   <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold"
-                    style={{ background: "var(--sea)", color: "#fff", fontFamily: "'Playfair Display',serif" }}>
+                    style={{ background: "linear-gradient(135deg, var(--sea) 0%, var(--sea-mid) 100%)", color: "#fff", fontFamily: "'Playfair Display',serif" }}>
                     {t.name[0]}
                   </div>
                   <div className="font-semibold text-sm mb-1" style={{ color: "var(--text-dark)" }}>{t.name}</div>
-                  <div className="text-xs mb-2" style={{ color: "var(--text-mid)" }}>{t.role}</div>
-                  <span className="text-xs font-medium px-3 py-1 rounded-full"
-                    style={{ background: "rgba(41,128,185,.12)", color: "var(--sea)" }}>
+                  <div className="text-xs mb-3" style={{ color: "var(--text-mid)" }}>{t.role}</div>
+                  <span className="text-xs font-semibold px-3 py-1 rounded-sm"
+                    style={{ background: "var(--gold-pale)", color: "var(--gold)", border: "1px solid rgba(201,149,42,.3)" }}>
                     Опыт {t.exp}
                   </span>
                 </div>
@@ -363,29 +375,34 @@ export default function Index() {
       </section>
 
       {/* ── SERVICES ── */}
-      <section id="services" className="py-24" style={{ background: "#fff" }}>
+      <section id="services" className="py-24"
+        style={{ background: "linear-gradient(160deg, var(--sea-deep) 0%, var(--sea-mid) 100%)" }}>
         <div className="max-w-7xl mx-auto px-5">
           <div className="text-center mb-14">
             <div className="section-label justify-center">Наши услуги</div>
             <h2 className="font-semibold"
-              style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(1.8rem,3.5vw,2.8rem)", color: "var(--text-dark)" }}>
-              Полный спектр услуг<br />в сфере недвижимости Анапы
+              style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(1.8rem,3.5vw,2.8rem)", color: "#fff" }}>
+              Полный спектр услуг<br />
+              <em style={{ color: "var(--gold-light)", fontStyle: "italic" }}>в сфере недвижимости Анапы</em>
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((s, i) => (
+            {SERVICES.map((s) => (
               <div key={s.title} className="card-hover p-7 rounded-xl group cursor-pointer"
-                style={{ background: i % 2 === 0 ? "var(--sea-pale)" : "#fff", border: "1px solid rgba(93,173,226,.2)" }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: "var(--sea)" }}>
-                  <Icon name={s.icon} size={22} style={{ color: "#fff" }} />
+                style={{ background: "rgba(255,255,255,.05)", border: "1px solid rgba(201,149,42,.25)", backdropFilter: "blur(4px)" }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style={{ background: "linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%)" }}>
+                  <Icon name={s.icon} size={22} style={{ color: "var(--sea-deep)" }} />
                 </div>
                 <h3 className="mb-2 font-semibold"
-                  style={{ fontFamily: "'Playfair Display',serif", fontSize: "1.2rem", color: "var(--text-dark)" }}>
+                  style={{ fontFamily: "'Playfair Display',serif", fontSize: "1.2rem", color: "#fff" }}>
                   {s.title}
                 </h3>
-                <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-mid)" }}>{s.desc}</p>
-                <button className="btn-outline-sea text-xs py-2 px-4" onClick={() => scrollTo("contacts")}>
-                  Узнать больше
+                <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(255,255,255,.65)" }}>{s.desc}</p>
+                <button className="text-xs font-semibold tracking-widest uppercase flex items-center gap-2 transition-all hover:gap-3"
+                  style={{ color: "var(--gold-light)", background: "none", border: "none", cursor: "pointer", letterSpacing: "0.12em" }}
+                  onClick={() => scrollTo("contacts")}>
+                  Узнать больше <Icon name="ArrowRight" size={12} />
                 </button>
               </div>
             ))}
@@ -554,20 +571,29 @@ export default function Index() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: "linear-gradient(135deg,var(--gold)0%,#E8B422 100%)" }} className="py-16">
-        <div className="max-w-4xl mx-auto px-5 text-center">
+      <section className="py-20 relative overflow-hidden"
+        style={{ background: "linear-gradient(135deg, var(--sea-deep) 0%, var(--sea-mid) 60%, var(--sea) 100%)" }}>
+        {/* Gold decorative lines */}
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, var(--gold), transparent)" }} />
+        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, var(--gold), transparent)" }} />
+        <div className="max-w-4xl mx-auto px-5 text-center relative z-10">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div style={{ height: 1, width: 60, background: "linear-gradient(90deg, transparent, var(--gold))" }} />
+            <Icon name="Star" size={14} style={{ color: "var(--gold)" }} />
+            <div style={{ height: 1, width: 60, background: "linear-gradient(90deg, var(--gold), transparent)" }} />
+          </div>
           <h2 className="mb-3 font-semibold"
-            style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(1.6rem,3.5vw,2.6rem)", color: "var(--text-dark)" }}>
+            style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(1.8rem,3.5vw,3rem)", color: "#fff" }}>
             Готовы найти дом у моря?
           </h2>
-          <p className="text-sm mb-7 mx-auto" style={{ color: "rgba(28,43,58,.75)", maxWidth: 420 }}>
+          <p className="text-sm mb-8 mx-auto" style={{ color: "rgba(255,255,255,.7)", maxWidth: 420, lineHeight: 1.7 }}>
             Позвоните нам или оставьте заявку — перезвоним в течение 15 минут
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-4">
             <a href="tel:+79061876057">
-              <button className="btn-sea"><Icon name="Phone" size={14} />Позвонить сейчас</button>
+              <button className="btn-gold"><Icon name="Phone" size={14} />Позвонить сейчас</button>
             </a>
-            <button className="btn-outline-sea" style={{ borderColor: "var(--sea-deep)", color: "var(--sea-deep)" }}
+            <button className="btn-outline-sea" style={{ borderColor: "rgba(255,255,255,.5)", color: "#fff" }}
               onClick={() => scrollTo("contacts")}>
               Оставить заявку
             </button>
@@ -696,11 +722,11 @@ export default function Index() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: "var(--text-dark)", color: "rgba(255,255,255,.6)" }} className="py-12">
+      <footer style={{ background: "var(--sea-deep)", color: "rgba(255,255,255,.6)", borderTop: "2px solid var(--gold)" }} className="py-12">
         <div className="max-w-7xl mx-auto px-5">
           <div className="grid md:grid-cols-4 gap-8 mb-10">
             <div className="md:col-span-2">
-              <img src={LOGO_URL} alt="АЯКС НА БЕРЕГУ" className="h-12 w-auto mb-4" style={{ filter: "brightness(0) invert(1)" }} />
+              <img src={LOGO_URL} alt="АЯКС НА БЕРЕГУ" className="mb-4" style={{ height: 70, width: "auto" }} />
               <p className="text-sm leading-relaxed mb-5" style={{ maxWidth: 290 }}>
                 Ведущее агентство недвижимости Анапы с 1997 года. Ваш надёжный партнёр у Чёрного моря.
               </p>
